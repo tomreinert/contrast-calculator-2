@@ -1,0 +1,24 @@
+{
+  "name": "contrast-2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "@alpinejs/persist": "^3.7.0",
+    "@tailwindcss/forms": "^0.4.0",
+    "alpinejs": "^3.7.0",
+    "apca-w3": "0.0.98-g-4g-w3",
+    "parcel": "^2.0.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.0",
+    "postcss": "^8.4.4",
+    "tailwindcss": "^3.0.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
