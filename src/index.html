@@ -6,79 +6,89 @@
     <link rel="stylesheet" href="main.css">
     <script type="module" src="main.js"></script>
     <script src="apca-w3-v.0.0.98g-4g.js"></script>
+    <style>
+      @import url('https://rsms.me/inter/inter.css');
+      html { font-family: 'Inter', sans-serif; }
+      @supports (font-variation-settings: normal) {
+        html { font-family: 'Inter var', sans-serif; }
+      }
+    </style>
   </head>
-  <body class="p-8">
+  <body>
+  <div class="w-100 text-center bg-yellow-300">Work in progress: <a class="underline" href="https://github.com/tomreinert/contrast-calculator-2">Github</a></div>
 
-
-  <div x-data x-init="setHEX(1); setHEX(2); calculateScore();" >
-
-    <div class="flex flex-row items-center">
-
-      <div class="border p-8 rounded">
-        <form @change="setHEX(1); calculateScore()" class="space-y-4 mb-8">
-          <div class="flex items-center space-x-4">
-            <label for="h1">H</label>
-            <input class="flex-grow" type="range" min="0" max="360" x-model="$store.colors.h1">
-            <input id="h1" class="input" type="number" min="0" max="360" x-model="$store.colors.h1">
+<main class="p-12 flex justify-center">
+  
+    <div x-data x-init="setHEX(1); setHEX(2); calculateScore();" >
+  
+      <div class="flex flex-row items-center">
+  
+        <div class="border p-8 rounded">
+          <form @change="setHEX(1); calculateScore()" class="space-y-4 mb-8">
+            <div class="flex items-center space-x-4">
+              <label for="h1">H</label>
+              <input class="flex-grow" type="range" min="0" max="360" x-model="$store.colors.h1">
+              <input id="h1" class="input" type="number" min="0" max="360" x-model="$store.colors.h1">
+            </div>
+            <div class="flex items-center space-x-4">
+              <label for="s1">S</label>
+              <input class="flex-grow" type="range" min="0" max="100" x-model="$store.colors.s1">
+              <input id="s1" class="input" type="number" min="0" max="100" x-model="$store.colors.s1">
+            </div>
+            <div class="flex items-center space-x-4">
+              <label for="l1">L</label>
+              <input class="flex-grow" type="range" min="0" max="100" x-model="$store.colors.l1">
+              <input id="l1" class="input" type="number" min="0" max="100" x-model="$store.colors.l1">
+            </div>
+  
+          </form>
+          <div @input.prevent="calculateScore();setHSL(1)">
+            <input x-model="$store.colors.hex1" type="color">
+            <input x-model="$store.colors.hex1" id="hex1" type="text">
           </div>
-          <div class="flex items-center space-x-4">
-            <label for="s1">S</label>
-            <input class="flex-grow" type="range" min="0" max="100" x-model="$store.colors.s1">
-            <input id="s1" class="input" type="number" min="0" max="100" x-model="$store.colors.s1">
-          </div>
-          <div class="flex items-center space-x-4">
-            <label for="l1">L</label>
-            <input class="flex-grow" type="range" min="0" max="100" x-model="$store.colors.l1">
-            <input id="l1" class="input" type="number" min="0" max="100" x-model="$store.colors.l1">
-          </div>
-        
-        </form>
-        <div @input.prevent="calculateScore();setHSL(1)">
-          <input x-model="$store.colors.hex1" type="color">
-          <input x-model="$store.colors.hex1" id="hex1" type="text">
         </div>
+  
+        <div>
+        <button class=" p-4 rounded border rounded mx-8 hover:bg-slate-100" @click="swap()"> <- Swap -></button>
+        </div>
+  
+        <div class="border p-8 rounded">
+          <form @change="setHEX(2); calculateScore()"  class="space-y-4 mb-8">
+            <div class="flex items-center space-x-4">
+              <label class="colorLabel" for="h2">H</label>
+              <input class="flex-grow" type="range" min="0" max="360" x-model="$store.colors.h2">
+              <input id="h2" class="input" type="number" min="0" max="360" x-model="$store.colors.h2">
+            </div>
+            <div class="flex items-center space-x-4">
+              <label for="s2">S</label>
+              <input class="flex-grow" type="range" min="0" max="100" x-model="$store.colors.s2">
+              <input id="s2" class="input" type="number" min="0" max="100" x-model="$store.colors.s2">
+            </div>
+            <div class="flex items-center space-x-4">
+              <label for="l2">L</label>
+              <input class="flex-grow" type="range" min="0" max="100" x-model="$store.colors.l2">
+              <input id="l2" class="input" type="number" min="0" max="100" x-model="$store.colors.l2">
+            </div>
+          </form>
+  
+            <div @input.prevent="calculateScore(); setHSL(2)">
+              <input x-model="$store.colors.hex2" type="color">
+              <input x-model="$store.colors.hex2" type="text">
+            </div>
+        </div>
+  
       </div>
-
-      <div>
-      <button class=" p-4 rounded border rounded mx-8 hover:bg-slate-100" @click="swap()"> <- Swap -></button>
+  
+  
+      <p class="my-12">Score: <span class="text-2xl" x-text="$store.colors.score"></span></p>
+  
+  
+      <div class="p-12" :style="{ backgroundColor: $store.colors.hex2 }">
+        <p class="font-bold" :style="{ color: $store.colors.hex1 }">Lorem ipsum</p>
       </div>
-
-      <div class="border p-8 rounded">
-        <form @change="setHEX(2); calculateScore()"  class="space-y-4 mb-8">
-          <div class="flex items-center space-x-4">
-            <label class="colorLabel" for="h2">H</label>
-            <input class="flex-grow" type="range" min="0" max="360" x-model="$store.colors.h2">
-            <input id="h2" class="input" type="number" min="0" max="360" x-model="$store.colors.h2">
-          </div>
-          <div class="flex items-center space-x-4">
-            <label for="s2">S</label>
-            <input class="flex-grow" type="range" min="0" max="100" x-model="$store.colors.s2">
-            <input id="s2" class="input" type="number" min="0" max="100" x-model="$store.colors.s2">
-          </div>
-          <div class="flex items-center space-x-4">
-            <label for="l2">L</label>
-            <input class="flex-grow" type="range" min="0" max="100" x-model="$store.colors.l2">
-            <input id="l2" class="input" type="number" min="0" max="100" x-model="$store.colors.l2">
-          </div>
-        </form>
-        
-          <div @input.prevent="calculateScore(); setHSL(2)">
-            <input x-model="$store.colors.hex2" type="color">
-            <input x-model="$store.colors.hex2" type="text">
-          </div>
-      </div>
-        
+  
     </div>
-
-
-    <p class="my-12">Score: <span class="text-2xl" x-text="$store.colors.score"></span></p>
-
-    
-    <div class="p-12" :style="{ backgroundColor: $store.colors.hex2 }">
-      <p class="font-bold" :style="{ color: $store.colors.hex1 }">Lorem ipsum</p>
-    </div>
-
-  </div>
+</main>
 
 
 
