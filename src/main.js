@@ -14,7 +14,7 @@ Alpine.store('colors', {
     l2: 80,
 });
 
-swapColors = function(){
+/* swapColors = function(){
   let a = Alpine.store('colors').hex1, b = Alpine.store('colors').hex2;
   [a, b] = [b, a];
   console.log(`${a} ${b}`);
@@ -23,7 +23,7 @@ swapColors = function(){
   setHSL(1);
   setHSL(2);
   calculateScore();
-};
+}; */
 
 calculateScore = function() {
   let hex1 = Alpine.store('colors').hex1;
