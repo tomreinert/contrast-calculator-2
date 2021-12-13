@@ -1,3 +1,4 @@
 node_modules
 dist/
-.parcel-cache/data.mdb
+.parcel-cache/
+.DS_Store

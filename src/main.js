@@ -30,7 +30,7 @@ calculateScore = function() {
   let hex2 = Alpine.store('colors').hex2;
   let score = APCAcontrast( sRGBtoY( hex1 ), sRGBtoY( hex2 ) );
   Alpine.store('colors').score = score;     
-},
+}
 
 setHSL = function(i) {
   let hex = Alpine.store('colors')[`hex${i}`];
@@ -38,7 +38,7 @@ setHSL = function(i) {
   Alpine.store('colors')[`h${i}`] = hsl.h;
   Alpine.store('colors')[`s${i}`] = hsl.s;
   Alpine.store('colors')[`l${i}`] = hsl.l;
-},
+}
 
 setHEX = function(i){
   let h1 = Alpine.store('colors')[`h${i}`];
