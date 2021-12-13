@@ -365,14 +365,23 @@ Ensure the default browser behavior of the `hidden` attribute.
   line-height: inherit;
 }[type='file']:focus {
   outline: 1px auto -webkit-focus-ring-color;
-}.mt-40 {
-  margin-top: 10rem;
+}.my-12 {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}.mb-8 {
+  margin-bottom: 2rem;
 }.flex {
   display: flex;
 }.flex-grow {
   flex-grow: 1;
+}.flex-row {
+  flex-direction: row;
 }.items-center {
   align-items: center;
+}.space-x-20 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(5rem * var(--tw-space-x-reverse));
+  margin-left: calc(5rem * calc(1 - var(--tw-space-x-reverse)));
 }.space-y-4 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-y-reverse: 0;
   margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
@@ -383,5 +392,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
 }.p-8 {
   padding: 2rem;
+}.p-12 {
+  padding: 3rem;
+}.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}.font-bold {
+  font-weight: 700;
 }
 /*# sourceMappingURL=index.904c1b4c.css.map */

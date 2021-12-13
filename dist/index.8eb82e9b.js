@@ -464,15 +464,46 @@ var _alpinejs = require("alpinejs");
 var _alpinejsDefault = parcelHelpers.interopDefault(_alpinejs);
 window.Alpine = _alpinejsDefault.default;
 _alpinejsDefault.default.store('colors', {
-    textColor: "#cc0033",
-    textColorH () {
-        return hexToHSL(_alpinejsDefault.default.store('colors').textColor).h;
-    },
-    backgroundColor: "#cc0033",
-    calculateScore () {
-        return APCAcontrast(sRGBtoY(_alpinejsDefault.default.store('colors').textColor), sRGBtoY(_alpinejsDefault.default.store('colors').backgroundColor));
-    }
+    score: '',
+    hex1: '',
+    hex2: '',
+    h1: 10,
+    s1: 0,
+    l1: 20,
+    h2: 0,
+    s2: 0,
+    l2: 80
 });
+swap = function() {
+    let a = _alpinejsDefault.default.store('colors').hex1, b = _alpinejsDefault.default.store('colors').hex2;
+    [a, b] = [
+        b,
+        a
+    ];
+    console.log(`${a} ${b}`);
+    _alpinejsDefault.default.store('colors').hex1 = a;
+    _alpinejsDefault.default.store('colors').hex2 = b;
+    setHSL(1);
+    setHSL(2);
+    calculateScore();
+};
+calculateScore = function() {
+    let hex1 = _alpinejsDefault.default.store('colors').hex1;
+    let hex2 = _alpinejsDefault.default.store('colors').hex2;
+    let score = APCAcontrast(sRGBtoY(hex1), sRGBtoY(hex2));
+    _alpinejsDefault.default.store('colors').score = score;
+}, setHSL = function(i) {
+    let hex = _alpinejsDefault.default.store('colors')[`hex${i}`];
+    let hsl = hexToHSL(hex);
+    _alpinejsDefault.default.store('colors')[`h${i}`] = hsl.h;
+    _alpinejsDefault.default.store('colors')[`s${i}`] = hsl.s;
+    _alpinejsDefault.default.store('colors')[`l${i}`] = hsl.l;
+}, setHEX = function(i) {
+    let h1 = _alpinejsDefault.default.store('colors')[`h${i}`];
+    let s1 = _alpinejsDefault.default.store('colors')[`s${i}`];
+    let l1 = _alpinejsDefault.default.store('colors')[`l${i}`];
+    _alpinejsDefault.default.store('colors')[`hex${i}`] = hslToHex(h1, s1, l1);
+};
 hslToHex = function(h, s, l) {
     l /= 100;
     const a = s * Math.min(l, 1 - l) / 100;

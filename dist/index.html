@@ -9,40 +9,75 @@
   </head>
   <body class="p-8">
 
-    <div x-data=""> 
-      <div x-text="$store.colors.calculateScore">
+
+  <div x-data="" x-init="setHEX(1); setHEX(2); calculateScore();">
+
+    <button @click="swap()">Swap</button>
+    <div class="flex flex-row space-x-20">
+
+      <div>
+        <form @change="setHEX(1); calculateScore()" class="space-y-4 mb-8">
+          <div class="flex items-center space-x-4">
+            <label for="h1">H</label>
+            <input class="flex-grow" type="range" min="0" max="360" x-model="$store.colors.h1">
+            <input id="h1" class="input" type="number" min="0" max="360" x-model="$store.colors.h1">
+          </div>
+          <div class="flex items-center space-x-4">
+            <label for="s1">S</label>
+            <input class="flex-grow" type="range" min="0" max="100" x-model="$store.colors.s1">
+            <input id="s1" class="input" type="number" min="0" max="100" x-model="$store.colors.s1">
+          </div>
+          <div class="flex items-center space-x-4">
+            <label for="l1">L</label>
+            <input class="flex-grow" type="range" min="0" max="100" x-model="$store.colors.l1">
+            <input id="l1" class="input" type="number" min="0" max="100" x-model="$store.colors.l1">
+          </div>
+        
+        </form>
+        <div @input.prevent="calculateScore();setHSL(1)">
+          <input x-model="$store.colors.hex1" type="color">
+          <input x-model="$store.colors.hex1" id="hex1" type="text">
+        </div>
       </div>
-      <div x-text="$store.colors.textColorH">
+
+      <div>
+        <form @change="setHEX(2); calculateScore()" class="space-y-4 mb-8">
+          <div class="flex items-center space-x-4">
+            <label class="colorLabel" for="h2">H</label>
+            <input class="flex-grow" type="range" min="0" max="360" x-model="$store.colors.h2">
+            <input id="h2" class="input" type="number" min="0" max="360" x-model="$store.colors.h2">
+          </div>
+          <div class="flex items-center space-x-4">
+            <label for="s2">S</label>
+            <input class="flex-grow" type="range" min="0" max="100" x-model="$store.colors.s2">
+            <input id="s2" class="input" type="number" min="0" max="100" x-model="$store.colors.s2">
+          </div>
+          <div class="flex items-center space-x-4">
+            <label for="l2">L</label>
+            <input class="flex-grow" type="range" min="0" max="100" x-model="$store.colors.l2">
+            <input id="l2" class="input" type="number" min="0" max="100" x-model="$store.colors.l2">
+          </div>
+        </form>
+        
+          <div @input.prevent="calculateScore(); setHSL(2)">
+            <input x-model="$store.colors.hex2" type="color">
+            <input x-model="$store.colors.hex2" type="text">
+          </div>
       </div>
+        
     </div>
 
-  <div x-data="">
 
-    <form class="space-y-4"> 
+    <p class="my-12">Score: <span class="text-2xl" x-text="$store.colors.score"></span></p>
 
-      <div class="flex items-center space-x-4">
-        <label class="colorLabel" for="h1">H</label>
-        <input class="flex-grow" type="range" min="0" max="360" x-model="$store.colors.textColorH">
-        <input id="h1" class="input" type="number" min="0" max="360" x-model="$store.colors.textColorH">
-      </div>
-      <div class="flex items-center space-x-4">
-        <label for="s1">S</label> 
-        <input class="flex-grow" type="range" min="0" max="100" x-model="s1">
-        <input id="s1" class="input" type="number" min="0" max="100" x-model="s1">
-      </div>
-      <div class="flex items-center space-x-4">
-        <label for="l1">L</label> 
-        <input class="flex-grow" type="range" min="0" max="100" x-model="l1">
-        <input id="l1" class="input" type="number" min="0" max="100" x-model="l1">
-      </div>
-    </form>
+    
+    <div class="p-12" :style="{ backgroundColor: $store.colors.hex2 }">
+      <p class="font-bold" :style="{ color: $store.colors.hex1 }">Lorem ipsum</p>
+    </div>
 
-    <input x-model="$store.colors.textColor" type="color">
-    <input x-model="$store.colors.textColor" type="text">
-
-    <input x-model="$store.colors.backgroundColor" type="color">
-    <input x-model="$store.colors.backgroundColor" type="text">
   </div>
+
+
 
 
 
