@@ -2,29 +2,61 @@ import Alpine from 'alpinejs'
  
 window.Alpine = Alpine
 
-
 Alpine.store('colors', {
-    textColor: "#cc0033",
-    textColorH(){
-        return hexToHSL(Alpine.store('colors').textColor).h;
-    },
+    score: '',
+    hex1: '',
+    hex2: '',  
+    h1: 10,
+    s1: 0,
+    l1: 20,
+    h2: 0,
+    s2: 0,
+    l2: 80,
+});
 
-    backgroundColor: "#cc0033",
+swap = function(){
+  let a = Alpine.store('colors').hex1, b = Alpine.store('colors').hex2;
+  [a, b] = [b, a];
+  console.log(`${a} ${b}`);
+  Alpine.store('colors').hex1 = a;
+  Alpine.store('colors').hex2 = b;
+  setHSL(1);
+  setHSL(2);
+  calculateScore();
+}
 
-    calculateScore() {
-        return APCAcontrast( sRGBtoY( Alpine.store('colors').textColor), sRGBtoY( Alpine.store('colors').backgroundColor ) );
-    },
-})
+calculateScore = function() {
+  let hex1 = Alpine.store('colors').hex1;
+  let hex2 = Alpine.store('colors').hex2;
+  let score = APCAcontrast( sRGBtoY( hex1 ), sRGBtoY( hex2 ) );
+  Alpine.store('colors').score = score;     
+}
+
+setHSL = function(i) {
+  let hex = Alpine.store('colors')[`hex${i}`];
+  let hsl = hexToHSL(hex);
+  Alpine.store('colors')[`h${i}`] = hsl.h;
+  Alpine.store('colors')[`s${i}`] = hsl.s;
+  Alpine.store('colors')[`l${i}`] = hsl.l;
+}
+
+setHEX = function(i){
+  let h1 = Alpine.store('colors')[`h${i}`];
+  let s1 = Alpine.store('colors')[`s${i}`];
+  let l1 = Alpine.store('colors')[`l${i}`];
+  Alpine.store('colors')[`hex${i}`] = hslToHex(h1,s1,l1);
+}
+
  
 hslToHex = function(h, s, l) {
-    l /= 100;
-    const a = s * Math.min(l, 1 - l) / 100;
-    const f = n => {
-      const k = (n + h / 30) % 12;
-      const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
-      return Math.round(255 * color).toString(16).padStart(2, '0');   // convert to Hex and prefix "0" if needed
-    };
-    return myHex = `#${f(0)}${f(8)}${f(4)}`;
+  l /= 100;
+  const a = s * Math.min(l, 1 - l) / 100;
+  const f = n => {
+    const k = (n + h / 30) % 12;
+    const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
+    return Math.round(255 * color).toString(16).padStart(2, '0');   // convert to Hex and prefix "0" if needed
+  };
+  return myHex = `#${f(0)}${f(8)}${f(4)}`;
 };
 
 hexToHSL = function(H) {
@@ -71,6 +103,7 @@ hexToHSL = function(H) {
 
     return {h,s,l};
 };
+
 Alpine.start()
 
 
