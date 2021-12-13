@@ -12,9 +12,9 @@
 
   <div x-data x-init="setHEX(1); setHEX(2); calculateScore();" >
 
-    <div class="flex flex-row space-x-20">
+    <div class="flex flex-row items-center">
 
-      <div>
+      <div class="border p-8 rounded">
         <form @change="setHEX(1); calculateScore()" class="space-y-4 mb-8">
           <div class="flex items-center space-x-4">
             <label for="h1">H</label>
@@ -39,10 +39,11 @@
         </div>
       </div>
 
-      <button @click="swap()"> <- Swap -></button>
-
-
       <div>
+      <button class=" p-4 rounded border rounded mx-8 hover:bg-slate-100" @click="swap()"> <- Swap -></button>
+      </div>
+
+      <div class="border p-8 rounded">
         <form @change="setHEX(2); calculateScore()"  class="space-y-4 mb-8">
           <div class="flex items-center space-x-4">
             <label class="colorLabel" for="h2">H</label>
