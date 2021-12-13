@@ -23,14 +23,14 @@ swap = function(){
   setHSL(1);
   setHSL(2);
   calculateScore();
-}
+};
 
 calculateScore = function() {
   let hex1 = Alpine.store('colors').hex1;
   let hex2 = Alpine.store('colors').hex2;
   let score = APCAcontrast( sRGBtoY( hex1 ), sRGBtoY( hex2 ) );
   Alpine.store('colors').score = score;     
-}
+};
 
 setHSL = function(i) {
   let hex = Alpine.store('colors')[`hex${i}`];
@@ -38,14 +38,14 @@ setHSL = function(i) {
   Alpine.store('colors')[`h${i}`] = hsl.h;
   Alpine.store('colors')[`s${i}`] = hsl.s;
   Alpine.store('colors')[`l${i}`] = hsl.l;
-}
+};
 
 setHEX = function(i){
   let h1 = Alpine.store('colors')[`h${i}`];
   let s1 = Alpine.store('colors')[`s${i}`];
   let l1 = Alpine.store('colors')[`l${i}`];
   Alpine.store('colors')[`hex${i}`] = hslToHex(h1,s1,l1);
-}
+};
 
  
 hslToHex = function(h, s, l) {
