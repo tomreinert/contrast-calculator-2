@@ -19,7 +19,7 @@
 
 <main class="p-12 flex justify-center">
   
-    <div x-data x-init="setHEX(1); setHEX(2); calculateScore();" >
+    <div x-data x-init="setHEX(1); setHEX(2); calculateScore(); swapColors();" >
   
       <div class="flex flex-row items-center">
   
@@ -49,7 +49,7 @@
         </div>
   
         <div>
-        <button class=" p-4 rounded border rounded mx-8 hover:bg-slate-100" @click="swap()"> <- Swap -></button>
+        <button class=" p-4 rounded border rounded mx-8 hover:bg-slate-100" @click="swapColors()"> <- Swap -></button>
         </div>
   
         <div class="border p-8 rounded">
