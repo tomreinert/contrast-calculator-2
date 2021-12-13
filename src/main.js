@@ -9,9 +9,6 @@ Alpine.data('app', () => ({
     console.log(`${a} ${b}`);
     Alpine.store('colors').hex1 = a;
     Alpine.store('colors').hex2 = b;
-    setHSL(1);
-    setHSL(2);
-    calculateScore();
   },
   
   calculateScore () {
@@ -51,8 +48,4 @@ Alpine.store('colors', {
 });
 
 Alpine.start()
-
-
-//
-
 
