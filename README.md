@@ -1,9 +1,12 @@
-# contrast-calculator-2
-color contrast calculator with HSL controls for finetuning. using APCA, alpinejs, tailwind
+# Contrast calculator and finetuner
+Color contrast calculator with HSL controls for finetuning. Using APCA, alpinejs, tailwind
 
-**Work in progress**
+🧨 **Work in progress**
 
-Demo: https://jolly-feynman-28ea37.netlify.app
+
+**Demo:**
+
+https://jolly-feynman-28ea37.netlify.app
 
 
 **To do**
