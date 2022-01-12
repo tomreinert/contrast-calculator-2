@@ -10,7 +10,8 @@ Demo: https://jolly-feynman-28ea37.netlify.app
 
 - [ ] use new colorparsley for hex-hsl conversion
 - [ ] try colord lib
+  - [ ] Allow different color inputs  
 - [ ] Show WCAG Score
-- [ ] Allow different color inputs
+
 - [ ] Reference lookup table for APCA score
 - [ ] ...
