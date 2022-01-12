@@ -8,6 +8,7 @@ Demo: https://jolly-feynman-28ea37.netlify.app
 
 **To do**
 
+- [ ] use new colorparsley for hex-hsl conversino
 - [ ] Show WCAG Score
 - [ ] Allow different color inputs
 - [ ] Reference lookup table for APCA score
